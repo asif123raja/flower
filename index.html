@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curved Stems with Flowers and Bubbles</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      height: 100vh;
+    }
+
+    .garden {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* SVG Stem */
+    .stem {
+        position: absolute;
+        bottom: 0;
+        animation: growStem 5s ease-in-out forwards, swayStem 4s ease-in-out infinite alternate;
+        transform-origin: bottom;
+      }
+  
+      @keyframes growStem {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+  
+      @keyframes swayStem {
+        0% { transform: rotate(0deg); }
+        50% { transform: rotate(-5deg); }
+        100% { transform: rotate(5deg); }
+      }
+
+    /* Leaves */
+    .leaf {
+      fill: #32cd32;
+      transform-origin: center;
+      animation: growLeaf 3s ease-in-out forwards;
+    }
+
+    @keyframes growLeaf {
+      0% { opacity: 0; transform: scale(0); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+   /* Flower */
+   .flower {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    animation: bloomFlower 3s ease-in-out 2s forwards, swayFlower 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes swayFlower {
+    0% { transform: translateX(0) rotate(0); }
+    50% { transform: translateX(-30px) rotate(-5deg); }
+    100% { transform: translateX(40px) rotate(5deg); }
+  }
+
+    .petal {
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, #ff69b4, #e75480);
+      position: absolute;
+      border-radius: 50%;
+      transform-origin: center;
+      transform: scale(0);
+      animation: growPetal 2s ease-in-out forwards;
+    }
+
+    .petal:nth-child(1) { top: -10px; left: 10px; }
+    .petal:nth-child(2) { top: 20px; left: -15px; }
+    .petal:nth-child(3) { top: 20px; left: 45px; }
+    .petal:nth-child(4) { top: 50px; left: 0; }
+    .petal:nth-child(5) { top: 50px; left: 30px; }
+
+    .center {
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, yellow, orange);
+      border-radius: 50%;
+      position: absolute;
+      top: 40px;
+      left: 35px;
+      animation: growPetal 2s ease-in-out forwards;
+    }
+
+    @keyframes bloomFlower {
+      0% { opacity: 0; transform: scale(0); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes growPetal {
+        0% {
+          opacity: 0;
+          transform: scale(0);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+    /* Bubble animations */
+    .bubble {
+      position: absolute;
+      bottom: -50px;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      animation: floatBubbles 5s ease-in-out infinite;
+    }
+
+    @keyframes floatBubbles {
+      0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-400px) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* Positioning for multiple stems with leaves */
+    .small-stem {
+      position: absolute;
+      bottom: 0;
+      animation: growStem 5s ease-in-out forwards, swayStem 4s ease-in-out infinite alternate;
+      transform-origin: bottom;
+    }
+
+    .small-stem .leaf {
+      animation: growLeaf 2s ease-in-out forwards;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="garden">
+    <!-- Flower 1 (Positioned at the top of the first stem) -->
+    <svg class="stem one" width="150" height="400" style="left: 10%;">
+      <path d="M75 400 Q100 200 50 0" stroke="green" stroke-width="8" fill="none"></path>
+      <circle class="leaf" cx="60" cy="200" r="10"></circle>
+      <circle class="leaf" cx="90" cy="150" r="10"></circle>
+    </svg>
+    <div class="flower" style="left: 10%; top: 280px; animation-delay: s;">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="center"></div>
+    </div>
+
+    <!-- Flower 2 (Positioned at the top of the second stem) -->
+    <svg class="stem two" width="100" height="400" style="left: 40%;">
+      <path d="M75 400 Q50 300 90 0" stroke="green" stroke-width="8" fill="none"></path>
+      <circle class="leaf" cx="50" cy="250" r="10"></circle>
+      <circle class="leaf" cx="100" cy="100" r="10"></circle>
+    </svg>
+    <div class="flower" style="left: 46%; top: 260px; animation-delay: s;">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="center"></div>
+    </div>
+
+    <!-- Flower 3 (Positioned at the top of the third stem) -->
+    <svg class="stem three" width="150" height="400" style="left: 70%;">
+      <path d="M75 400 Q110 300 30 0" stroke="green" stroke-width="8" fill="none"></path>
+      <circle class="leaf" cx="80" cy="180" r="10"></circle>
+      <circle class="leaf" cx="40" cy="90" r="10"></circle>
+    </svg>
+    <div class="flower" style="left: 65%; top: 270px; animation-delay: s;">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="center"></div>
+    </div>
+
+    <!-- Floating Smaller Stems -->
+    <svg class="small-stem" width="80" height="250" style="left: 15%; bottom: 0;">
+        <path d="M40 250 Q70 180 40 60" stroke="green" stroke-width="5" fill="none"></path>
+        <path class="leaf" d="M55 150 Q60 140 65 150 Q60 160 55 150" fill="green" stroke="darkgreen" stroke-width="3"></path>
+        <path class="leaf" d="M25 130 Q20 120 15 130 Q20 140 25 130" fill="green" stroke="darkgreen" stroke-width="2"></path>
+      </svg>
+      
+      <svg class="small-stem" width="80" height="230" style="left: 20%; bottom: 0;">
+        <path d="M40 230 Q30 210 20 120" stroke="green" stroke-width="4" fill="none"></path>
+        <path class="leaf" d="M45 180 Q50 170 55 180 Q50 190 45 180" fill="green" stroke="darkgreen" stroke-width="2"></path>
+        <path class="leaf" d="M15 140 Q10 130 5 140 Q10 150 15 140" fill="green" stroke="darkgreen" stroke-width="4"></path>
+      </svg>
+      
+      <svg class="small-stem" width="80" height="240" style="left: 25%; bottom: 0;">
+        <path d="M40 240 Q80 210 70 90" stroke="green" stroke-width="3" fill="none"></path>
+        <path class="leaf" d="M65 160 Q70 150 75 160 Q70 170 65 160" fill="green" stroke="darkgreen" stroke-width="2"></path>
+        <path class="leaf" d="M35 120 Q30 110 25 120 Q30 130 35 120" fill="green" stroke="darkgreen" stroke-width="2"></path>
+      </svg>
+      
+      <svg class="small-stem" width="80" height="220" style="left: 50%; bottom: 0;">
+        <path d="M40 220 Q60 160 40 50" stroke="green" stroke-width="3" fill="none"></path>
+        <path class="leaf" d="M55 140 Q60 130 65 140 Q60 150 55 140" fill="green" stroke="darkgreen" stroke-width="2"></path>
+        <path class="leaf" d="M25 120 Q20 110 15 120 Q20 130 25 120" fill="green" stroke="darkgreen" stroke-width="2"></path>
+      </svg>
+      
+      <svg class="small-stem" width="80" height="260" style="left: 45%; bottom: 0;">
+        <path d="M40 260 Q30 220 20 130" stroke="green" stroke-width="2" fill="none"></path>
+        <path class="leaf" d="M45 200 Q50 190 55 200 Q50 210 45 200" fill="green" stroke="darkgreen" stroke-width="2"></path>
+        <path class="leaf" d="M15 160 Q10 150 5 160 Q10 170 15 160" fill="green" stroke="darkgreen" stroke-width="2"></path>
+      </svg>
+      
+      <svg class="small-stem" width="80" height="240" style="left: 75%; bottom: 0;">
+        <path d="M40 240 Q80 200 70 90" stroke="green" stroke-width="3" fill="none"></path>
+        <path class="leaf" d="M65 170 Q70 160 75 170 Q70 180 65 170" fill="green" stroke="darkgreen" stroke-width="2"></path>
+        <path class="leaf" d="M35 130 Q30 120 25 130 Q30 140 35 130" fill="green" stroke="darkgreen" stroke-width="2"></path>
+      </svg>
+      
+      <svg class="small-stem" width="80" height="250" style="left: 30%; bottom: 0;">
+        <path d="M40 250 Q60 180 40 70" stroke="green" stroke-width="4" fill="none"></path>
+        <path class="leaf" d="M55 160 Q60 150 65 160 Q60 170 55 160" fill="green" stroke="darkgreen" stroke-width="2"></path>
+        <path class="leaf" d="M25 140 Q20 130 15 140 Q20 150 25 140" fill="green" stroke="darkgreen" stroke-width="2"></path>
+      </svg>
+      
+      <svg class="small-stem" width="80" height="230" style="left: 60%; bottom: 0;">
+        <path d="M40 230 Q30 210 20 120" stroke="green" stroke-width="2" fill="none"></path>
+        <path class="leaf" d="M45 190 Q50 180 55 190 Q50 200 45 190" fill="green" stroke="darkgreen" stroke-width="2"></path>
+        <path class="leaf" d="M15 150 Q10 140 5 150 Q10 160 15 150" fill="green" stroke="darkgreen" stroke-width="2"></path>
+      </svg>
+      
+      <svg class="small-stem" width="80" height="240" style="left: 90%; bottom: 0;">
+        <path d="M40 240 Q80 210 70 80" stroke="green" stroke-width="2" fill="none"></path>
+        <path class="leaf" d="M65 160 Q70 150 75 160 Q70 170 65 160" fill="green" stroke="darkgreen" stroke-width="2"></path>
+        <path class="leaf" d="M35 120 Q30 110 25 120 Q30 130 35 120" fill="green" stroke="darkgreen" stroke-width="2"></path>
+      </svg>
+      
+      <svg class="small-stem" width="80" height="220" style="left: 0%; bottom: 0%;">
+        <path d="M40 220 Q60 160 40 50" stroke="green" stroke-width="1" fill="none"></path>
+        <path class="leaf" d="M55 130 Q60 120 65 130 Q60 140 55 130" fill="green" stroke="darkgreen" stroke-width="2"></path>
+        <path class="leaf" d="M25 110 Q20 100 15 110 Q20 120 25 110" fill="green" stroke="darkgreen" stroke-width="2"></path>
+      </svg>
+      
+      <svg class="small-stem" width="80" height="230" style="left: 65%; bottom: 0;">
+        <path d="M40 230 Q30 200 20 120" stroke="green" stroke-width="2" fill="none"></path>
+        <path class="leaf" d="M45 180 Q50 170 55 180 Q50 190 45 180" fill="green" stroke="darkgreen" stroke-width="2"></path>
+        <path class="leaf" d="M15 140 Q10 130 5 140 Q10 150 15 140" fill="green" stroke="darkgreen" stroke-width="2"></path>
+      </svg>
+      
+      <svg class="small-stem" width="80" height="250" style="left: 10%; bottom: 0%;">
+        <path d="M40 250 Q80 210 70 90" stroke="green" stroke-width="3" fill="none"></path>
+        <path class="leaf" d="M65 160 Q70 150 75 160 Q70 170 65 160" fill="green" stroke="darkgreen" stroke-width="2"></path>
+        <path class="leaf" d="M35 120 Q30 110 25 120 Q30 130 35 120" fill="green" stroke="darkgreen" stroke-width="2"></path>
+      </svg>
+      
+
+    <!-- Floating Bubbles -->
+    <div class="bubble" style="left: 10%; animation-delay:0s"></div>
+    <div class="bubble" style="left: 35%; animation-delay:1s"></div>
+    <div class="bubble" style="left: 60%; animation-delay:0s"></div>
+    <div class="bubble" style="left: 80%; animation-delay:1s"></div>
+    <div class="bubble" style="left: 15%; animation-delay:1s"></div>
+    <div class="bubble" style="left: 55%; animation-delay:0s"></div>
+    <div class="bubble" style="left: 30%; animation-delay:0s"></div>
+    <div class="bubble" style="left: 90%; animation-delay:0s"></div>
+    <div class="bubble" style="left: 10%; animation-delay:0.5s"></div>
+    <div class="bubble" style="left: 30%; animation-delay:1.5s"></div>
+    <div class="bubble" style="left: 67%; animation-delay:0.5s"></div>
+    <div class="bubble" style="left: 75%; animation-delay:1.5s"></div>
+  </div>
+</body>
+</html>
